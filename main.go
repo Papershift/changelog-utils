@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/azamat-sharapov/changelog-utils/commands"
+	"github.com/Papershift/changelog-utils/commands"
 	"github.com/urfave/cli/v2"
 )
 

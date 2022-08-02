@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/azamat-sharapov/changelog-utils/etc"
+	"github.com/Papershift/changelog-utils/etc"
 	"github.com/urfave/cli/v2"
 )
 

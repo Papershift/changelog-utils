@@ -1,4 +1,4 @@
-module github.com/azamat-sharapov/changelog-utils
+module github.com/Papershift/changelog-utils
 
 go 1.17
 

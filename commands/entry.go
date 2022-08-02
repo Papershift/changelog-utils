@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/azamat-sharapov/changelog-utils/etc"
+	"github.com/Papershift/changelog-utils/etc"
 	"github.com/hashicorp/hcl/v2/hclsimple"
 	"github.com/hashicorp/hcl/v2/hclwrite"
 	"github.com/urfave/cli/v2"
