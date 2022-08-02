@@ -16,6 +16,8 @@ func main() {
 
 		Commands: []*cli.Command{
 			&commands.InitCommand,
+			&commands.ReleaseCommand,
+			&commands.VersionCommand,
 
 			&commands.AddedCommand,
 			&commands.ChangedCommand,
@@ -23,15 +25,8 @@ func main() {
 			&commands.RemovedCommand,
 			&commands.SecurityCommand,
 			&commands.DeprecatedCommand,
-
-			&commands.ReleaseCommand,
 		},
 
-		Before: func(ctx *cli.Context) error {
-			// add empty line
-			fmt.Println()
-			return nil
-		},
 		After: func(ctx *cli.Context) error {
 			fmt.Println()
 			return nil

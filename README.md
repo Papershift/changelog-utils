@@ -31,10 +31,13 @@ have `CHANGELOG.md` file and start using it.
 ### help
 Prints help
 
+### version
+Prints current changelog-utils version
+
 ### init
 **Params:**
 - `--github-username` - Your Github username
-- `--fullname` - Your full name
+- `--fullname` - Your full name  
 Creates `changelogs/` directory with config file with the info you provided.
 It also adds `.gitignore` to exclude config file from Git.
 
@@ -42,12 +45,12 @@ It also adds `.gitignore` to exclude config file from Git.
 **Aliases:** `add`, `change`, `fix`, `remove`, `secure`, `deprecate`
 **Params:**
 - `--title`, `-t` - Changelog entry title
-- `--asana`, `-a` - URL to asana task
+- `--asana`, `-a` - URL to asana task  
 Adds new changelog entry under a section by command name (`added` => Added, etc.).
 
 ### release
 **Params:**
-- `--version`, `-v`
+- `--version`, `-v`  
 Inserts all changelog entries into `CHANGELOG.md` under given version number and
 then deletes the entries.  
 **IMPORTANT**: This command searches for latest existing release in `CHANGELOG.md`
