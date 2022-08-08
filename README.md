@@ -11,6 +11,9 @@ Optionally rename the binary to `ch` for convenience.
 Create new or move existing `CHANGELOG.md` file in the same directory. 
 Then run commands:
 ```shell
+# downloaded binary might not be executable, this makes it executable:
+$ chmod +x ch
+
 # this will create changelogs/ dir with local config file in it
 $ ./ch init --github-username your-github-username --fullname "Your Name"
 
