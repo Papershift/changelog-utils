@@ -241,7 +241,7 @@ func getUsersEntriesPaths() ([]string, error) {
 		}
 
 		for _, userDirEntry := range userDir {
-			if !userDirEntry.IsDir() || strings.HasSuffix(userDirEntry.Name(), ".hcl") {
+			if !userDirEntry.IsDir() && strings.HasSuffix(userDirEntry.Name(), ".hcl") {
 				entries = append(entries, fmt.Sprintf("%s/%s", userDirPath, userDirEntry.Name()))
 			}
 		}
