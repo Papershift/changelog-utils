@@ -49,7 +49,7 @@ Creates `changelogs/` directory with config file with the info you provided.
 It also adds `.gitignore` to exclude config file from Git.
 
 ### added, changed, fixed, removed, security, deprecated
-**Aliases:** `add`, `change`, `fix`, `remove`, `secure`, `deprecate`
+**Aliases:** `add`, `change`, `fix`, `remove`, `secure`, `deprecate`  
 **Params:**
 - `--title`, `-t` - Changelog entry title
 - `--url`, `-u` - Jira issue or Asana task URL  
