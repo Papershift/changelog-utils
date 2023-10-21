@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"net/url"
 	"os"
 	"regexp"
 	"strconv"
@@ -198,10 +199,10 @@ func getChangelogParts() ([]byte, []byte, error) {
 func makeReleaseEntry(entry *Entry) []byte {
 	var str bytes.Buffer
 
-	asanaShortNumb := getAsanaUrlShortNumb(entry.Asana)
+	urlText := getUrlText(entry.Url)
 
 	firstLine := fmt.Sprintf("- %s  ", entry.Title)
-	secondLine := fmt.Sprintf("  Task: [%s](%s) | Author: [%s](%s)", asanaShortNumb, entry.Asana, entry.Author, entry.Github)
+	secondLine := fmt.Sprintf("  Task: [%s](%s) | Author: [%s](%s)", urlText, entry.Url, entry.Author, entry.Github)
 
 	str.WriteString(firstLine)
 	str.WriteRune(NEW_LINE)
@@ -250,8 +251,40 @@ func getUsersEntriesPaths() ([]string, error) {
 	return entries, nil
 }
 
-func getAsanaUrlShortNumb(url string) string {
-	split := strings.Split(url, "/")
+func getUrlText(taskUrl string) string {
+	u, err := url.Parse(taskUrl)
+	if err != nil {
+		return ""
+	}
+
+	if strings.Contains(u.Host, "atlassian") {
+		return getJiraUrlIssueNumb(u)
+	}
+	if strings.Contains(u.Host, "asana") {
+		return getAsanaUrlShortNumb(u)
+	}
+
+	return "Task"
+}
+
+func getJiraUrlIssueNumb(jiraUrl *url.URL) string {
+	selectedIssue := jiraUrl.Query().Get("selectedIssue")
+
+	if len(selectedIssue) > 0 {
+		return selectedIssue
+	}
+
+	split := strings.Split(jiraUrl.Path, "/")
+
+	if len(split) > 2 && split[1] == "browse" && len(split[2]) > 0 {
+		return split[2]
+	}
+
+	return "Task"
+}
+
+func getAsanaUrlShortNumb(asanaUrl *url.URL) string {
+	split := strings.Split(asanaUrl.Path, "/")
 
 	for i := len(split) - 1; i >= 0; i-- {
 		str := split[i]
@@ -265,5 +298,5 @@ func getAsanaUrlShortNumb(url string) string {
 		}
 	}
 
-	return ""
+	return "Task"
 }

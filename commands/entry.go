@@ -17,7 +17,7 @@ import (
 type Entry struct {
 	Section string `hcl:"section"`
 	Title   string `hcl:"title"`
-	Asana   string `hcl:"asana"`
+	Url     string `hcl:"url"`
 	Author  string `hcl:"author"`
 	Github  string `hcl:"github"`
 }
@@ -42,9 +42,9 @@ func makeEntryCommand(name string, alias string) cli.Command {
 				Required: true,
 			},
 			&cli.StringFlag{
-				Name:     "asana",
-				Aliases:  []string{"a"},
-				Usage:    "Asana link",
+				Name:     "url",
+				Aliases:  []string{"u"},
+				Usage:    "Jira issue or Asana task URL",
 				Required: true,
 			},
 		},
@@ -65,7 +65,7 @@ func entryHandler(ctx *cli.Context) error {
 	entry := Entry{
 		Section: ctx.Command.Name,
 		Title:   ctx.String("title"),
-		Asana:   ctx.String("asana"),
+		Url:     ctx.String("url"),
 		Author:  conf.User.Fullname,
 		Github:  fmt.Sprintf("https://github.com/%s", conf.User.GithubUsername),
 	}
@@ -76,7 +76,7 @@ func entryHandler(ctx *cli.Context) error {
 
 	body.SetAttributeValue("section", cty.StringVal(entry.Section))
 	body.SetAttributeValue("title", cty.StringVal(entry.Title))
-	body.SetAttributeValue("asana", cty.StringVal(entry.Asana))
+	body.SetAttributeValue("url", cty.StringVal(entry.Url))
 	body.SetAttributeValue("author", cty.StringVal(entry.Author))
 	body.SetAttributeValue("github", cty.StringVal(entry.Github))
 

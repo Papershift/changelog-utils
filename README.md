@@ -21,7 +21,11 @@ $ ./ch init --github-username your-github-username --fullname "Your Name"
 # real Asana URL, because it is parsed when releasing to get last 4 digits. You can
 # repeat similar command multiple times and instead of `added`, you can put `changed`,
 # `fixed`, `removed`, `security`, `deprecated`
-$ ./ch added --title "Example task title" --asana https://app.asana.com/0/0/123456789/f
+$ ./ch added --title "Example Asana task" --url https://app.asana.com/0/0/123456789/f
+
+# Jira issue URLs are also supported
+$ ./ch changed --title "Example Jira issue" --url "https://example.atlassian.net/jira/software/projects/PROJECT/boards/1?selectedIssue=PROJECT-123"
+$ ./ch fixed --title "Another Jira issue" --url https://example.atlassian.net/browse/PROJECT-456
 
 # following command will go through all changelog entries in changelogs/ subdirs, inserts
 # them in CHANGELOG.md and removes entries from subdirs
@@ -48,7 +52,7 @@ It also adds `.gitignore` to exclude config file from Git.
 **Aliases:** `add`, `change`, `fix`, `remove`, `secure`, `deprecate`
 **Params:**
 - `--title`, `-t` - Changelog entry title
-- `--asana`, `-a` - URL to asana task  
+- `--url`, `-u` - Jira issue or Asana task URL  
 Adds new changelog entry under a section by command name (`added` => Added, etc.).
 
 ### release
@@ -63,8 +67,8 @@ and the format of releaes heading is expected to be as follows: `## [00.0] - YYY
 - Unit tests
 - Document code
 - Configurable CHANGELOG.md file name
-- Support for multiple Asana URLs
+- Support for multiple task URLs
 - Support for multiple authors
-- Asana URL format validator
+- Task URL format validator
 - Version input validation
 - Interactive commands
